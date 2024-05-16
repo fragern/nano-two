@@ -12,6 +12,7 @@
 		BCF2A19D2BF375E400E480E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF2A19C2BF375E400E480E8 /* ContentView.swift */; };
 		BCF2A19F2BF375E500E480E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCF2A19E2BF375E500E480E8 /* Assets.xcassets */; };
 		BCF2A1A22BF375E500E480E8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCF2A1A12BF375E500E480E8 /* Preview Assets.xcassets */; };
+		BCF785912BF661CA0044E7A1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF785902BF661CA0044E7A1 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		BCF2A19C2BF375E400E480E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BCF2A19E2BF375E500E480E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BCF2A1A12BF375E500E480E8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BCF785902BF661CA0044E7A1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			children = (
 				BCF2A19A2BF375E400E480E8 /* nano_twoApp.swift */,
 				BCF2A19C2BF375E400E480E8 /* ContentView.swift */,
+				BCF785902BF661CA0044E7A1 /* HomeView.swift */,
 				BCF2A19E2BF375E500E480E8 /* Assets.xcassets */,
 				BCF2A1A02BF375E500E480E8 /* Preview Content */,
 			);
@@ -192,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCF785912BF661CA0044E7A1 /* HomeView.swift in Sources */,
 				BCF2A19D2BF375E400E480E8 /* ContentView.swift in Sources */,
 				BCF2A19B2BF375E400E480E8 /* nano_twoApp.swift in Sources */,
 			);
