@@ -11,6 +11,16 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ScrollView {
+                HStack{
+                    Image("small_two")
+                        .resizable()
+                        .scaledToFit()
+                    Image("small_one")
+                        .resizable()
+                        .scaledToFit()
+                }
+                .padding(.vertical, -10)
+
                 NavigationLink(destination: ContentView()) {
                     LocationCardView()
                 }
