@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BCC344892BF75ECD00124C89 /* LocationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC344882BF75ECD00124C89 /* LocationCardView.swift */; };
+		BCC3448B2BF75FF600124C89 /* CardBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC3448A2BF75FF600124C89 /* CardBackground.swift */; };
+		BCC3448E2BF769BE00124C89 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC3448D2BF769BE00124C89 /* LocationModel.swift */; };
 		BCF2A1962BF375E400E480E8 /* nano-two Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BCF2A1952BF375E400E480E8 /* nano-two Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BCF2A19B2BF375E400E480E8 /* nano_twoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF2A19A2BF375E400E480E8 /* nano_twoApp.swift */; };
 		BCF2A19D2BF375E400E480E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF2A19C2BF375E400E480E8 /* ContentView.swift */; };
 		BCF2A19F2BF375E500E480E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCF2A19E2BF375E500E480E8 /* Assets.xcassets */; };
 		BCF2A1A22BF375E500E480E8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCF2A1A12BF375E500E480E8 /* Preview Assets.xcassets */; };
 		BCF785912BF661CA0044E7A1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF785902BF661CA0044E7A1 /* HomeView.swift */; };
+		BCF785932BF726770044E7A1 /* DeitiesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF785922BF726770044E7A1 /* DeitiesModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BCC344882BF75ECD00124C89 /* LocationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCardView.swift; sourceTree = "<group>"; };
+		BCC3448A2BF75FF600124C89 /* CardBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBackground.swift; sourceTree = "<group>"; };
+		BCC3448D2BF769BE00124C89 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		BCF2A18F2BF375E400E480E8 /* nano-two.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nano-two.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCF2A1952BF375E400E480E8 /* nano-two Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nano-two Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCF2A19A2BF375E400E480E8 /* nano_twoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nano_twoApp.swift; sourceTree = "<group>"; };
@@ -47,6 +54,7 @@
 		BCF2A19E2BF375E500E480E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BCF2A1A12BF375E500E480E8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BCF785902BF661CA0044E7A1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BCF785922BF726770044E7A1 /* DeitiesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeitiesModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +68,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BCC344862BF75C3400124C89 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BCF2A19C2BF375E400E480E8 /* ContentView.swift */,
+				BCF785902BF661CA0044E7A1 /* HomeView.swift */,
+				BCC344882BF75ECD00124C89 /* LocationCardView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BCC344872BF75C4700124C89 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				BCC3448A2BF75FF600124C89 /* CardBackground.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		BCC3448C2BF7671700124C89 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BCF785922BF726770044E7A1 /* DeitiesModel.swift */,
+				BCC3448D2BF769BE00124C89 /* LocationModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		BCF2A1882BF375E400E480E8 = {
 			isa = PBXGroup;
 			children = (
@@ -80,9 +115,10 @@
 		BCF2A1992BF375E400E480E8 /* nano-two Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				BCC3448C2BF7671700124C89 /* Model */,
 				BCF2A19A2BF375E400E480E8 /* nano_twoApp.swift */,
-				BCF2A19C2BF375E400E480E8 /* ContentView.swift */,
-				BCF785902BF661CA0044E7A1 /* HomeView.swift */,
+				BCC344862BF75C3400124C89 /* View */,
+				BCC344872BF75C4700124C89 /* Helper */,
 				BCF2A19E2BF375E500E480E8 /* Assets.xcassets */,
 				BCF2A1A02BF375E500E480E8 /* Preview Content */,
 			);
@@ -198,6 +234,10 @@
 				BCF785912BF661CA0044E7A1 /* HomeView.swift in Sources */,
 				BCF2A19D2BF375E400E480E8 /* ContentView.swift in Sources */,
 				BCF2A19B2BF375E400E480E8 /* nano_twoApp.swift in Sources */,
+				BCC3448B2BF75FF600124C89 /* CardBackground.swift in Sources */,
+				BCF785932BF726770044E7A1 /* DeitiesModel.swift in Sources */,
+				BCC3448E2BF769BE00124C89 /* LocationModel.swift in Sources */,
+				BCC344892BF75ECD00124C89 /* LocationCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
