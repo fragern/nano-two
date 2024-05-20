@@ -8,6 +8,9 @@
 import Foundation
 
 struct Location {
-    var distance: Double
     var locationName: String
+    var latitude: Double
+    var longitude: Double
+    var god: String
+    //    var distance: Double
 }
