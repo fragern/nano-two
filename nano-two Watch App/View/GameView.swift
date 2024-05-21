@@ -224,6 +224,7 @@ import SwiftUI
 
 struct GameView: View {
     let godName: String
+    @EnvironmentObject var progressManager: ProgressManager
     
     @State private var shuffledLetters: [String] = []
     @State private var selectedLetter: String = ""
@@ -235,6 +236,7 @@ struct GameView: View {
                 print("The guessed word is \(godName)!")
                 showingCompleteModal = true
                 guessedWord = emptyString
+                progressManager.incrementProgress() // Increment progress
             } else if trimmedWord.count == godName.count && trimmedWord != godName {
                 print("Incorrect guess!")
                 showingErrorModal = true
@@ -242,7 +244,7 @@ struct GameView: View {
             }
         }
     }
-    @State private var buttonClicked: [UUID: Bool] = [:]
+    @State private var buttonClicked: [Int: Bool] = [:]
     @State private var showingCompleteModal = false
     @State private var showingErrorModal = false
     
@@ -287,7 +289,7 @@ struct GameView: View {
                         }
                         .padding(-20)
                     VStack {
-                        CircularProgressView(progress: 0.6)
+                        CircularProgressView(progress: progressManager.progress)
                             .padding(EdgeInsets(top: 0, leading: 0, bottom: 25, trailing: 0))
                         Text("Completed")
                             .font(.title2)
@@ -303,100 +305,52 @@ struct GameView: View {
                         .fill(Color.black.opacity(0.8))
                         .edgesIgnoringSafeArea(.all)
                         .onTapGesture {
-                            resetGame()
+                            showingErrorModal = false
                         }
                         .padding(-20)
                     VStack {
-                        Text("Incorrect Guess!")
-                            .font(.title3)
+                        Text("Incorrect guess!")
+                            .font(.title2)
                             .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
                             .background(Color.red)
                             .foregroundColor(.white)
                             .cornerRadius(10)
-                        Button(action: {
-                            resetGame()
-                        }) {
-                            Text("Retry")
-                                .font(.title3)
-                                .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                        }
-                        .buttonStyle(PlainButtonStyle())
-                        .padding(.top, 20)
                     }
                 }
             }
-            .padding()
             .onAppear {
-                shuffledLetters = Array(godName).map { String($0) }.shuffled()
+                shuffledLetters = godName.map { String($0) }.shuffled()
             }
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(false)
     }
     
-    func resetGame() {
-        buttonClicked = [:]
-        guessedWord = emptyString
-        showingErrorModal = false
-    }
-    
-    @ViewBuilder
     func createGrid() -> some View {
-        VStack {
-            ForEach(shuffledLetters.chunked(into: rowSize()), id: \.self) { row in
-                HStack {
-                    ForEach(row.indices, id: \.self) { index in
-                        let letter = row[index]
-                        let id = UUID()
-                        Button(action: {
-                            if buttonClicked[id] ?? false {
-                                guessedWord.removeLast()
-                                buttonClicked[id] = false
-                            } else {
-                                self.selectedLetter = letter
-                                self.guessedWord += letter
-                                buttonClicked[id] = true
-                            }
-                        }) {
-                            Text(letter)
-                                .font(.title2)
-                                .foregroundStyle(.black)
-                                .padding()
-                        }
-                        .clipShape(Rectangle())
-                        .background(buttonClicked[id] ?? false ? Color.gray : Color.yellow)
-                        .cornerRadius(10)
+        let gridItemLayout = [GridItem(.adaptive(minimum: 50))]
+        return LazyVGrid(columns: gridItemLayout, spacing: 10) {
+            ForEach(shuffledLetters.indices, id: \.self) { index in
+                let letter = shuffledLetters[index]
+                Button(action: {
+                    if !(buttonClicked[index] ?? false) {
+                        guessedWord += letter
+                        buttonClicked[index] = true
                     }
+                }) {
+                    Text(letter)
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .frame(width: 50, height: 50)
+                        .background(Color.yellow)
+                        .cornerRadius(10)
                 }
+                .background(buttonClicked[index] ?? false ? Color.yellow.opacity(0) : Color.yellow.opacity(0))
+                .buttonStyle(PlainButtonStyle())
             }
-        }
-    }
-    
-    func rowSize() -> Int {
-        switch godName.count {
-        case 4: return 2
-        case 5: return 3
-        default: return 3
         }
     }
 }
 
 #Preview {
-    Group {
-//        GameView(godName: "OSIRIS")
-        GameView(godName: "HORUS")
-//        GameView(godName: "ATUM")
-    }
-}
-
-// Helper to chunk the letters into groups
-extension Array {
-    func chunked(into size: Int) -> [[Element]] {
-        stride(from: 0, to: count, by: size).map {
-            Array(self[$0..<Swift.min($0 + size, count)])
-        }
-    }
+    GameView(godName: "OSIRIS")
+        .environmentObject(ProgressManager(totalPuzzles: 8))
 }

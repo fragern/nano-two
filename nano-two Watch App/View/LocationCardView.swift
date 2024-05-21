@@ -17,13 +17,8 @@ struct LocationCardView: View {
             VStack (alignment: .leading, spacing: 4){
                 Text(location.locationName) // refactor to struct
                     .font(.system(size: 16))
-//                Text("1 km") // refactor to struct
-//                    .font(.system(size: 14))
-//                    .opacity(0.75)
                 Text("\(String(format: "%.2f", distanceFromUser)) km")
                     .opacity(0.5)
-//                Text(String(format: "%.4f", location.latitude))
-//                Text(String(format: "%.4f", location.longitude))
             }
             .padding()
             
@@ -36,7 +31,6 @@ struct LocationCardView: View {
         }
         .background(Color.yellow.opacity(0.6))
         .clipShape(RoundedRectangle(cornerRadius: 10))
-//        .padding(EdgeInsets(top: 0, leading: 2, bottom: 10, trailing: 2))
     }
     
     var distanceFromUser: Double {
@@ -48,18 +42,6 @@ struct LocationCardView: View {
         return distanceInKilometers
     }
 }
-
-//struct ContentView: View {
-//    var body: some View {
-//        let sampleLocation = Location(locationName: "Sample", latitude: 0, longitude: 0)
-//        LocationCardView(location: sampleLocation)
-//    }
-//}
-//
-//#Preview {
-//    let sampleLocation = Location(locationName: "Sample", latitude: 0, longitude: 0)
-//    LocationCardView(location: sampleLocation)
-//}
 
 struct ContentView: View {
     var body: some View {

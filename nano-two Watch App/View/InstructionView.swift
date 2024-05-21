@@ -11,23 +11,22 @@ struct InstructionView: View {
     let location: Location
     let userLatitude: Double
     let userLongitude: Double
+    @EnvironmentObject var progressManager: ProgressManager
     
     var body: some View {
         VStack {
             Text("📝")
                 .font(.title2)
-//                .padding()
             
             Spacer()
             
             Text("1. Be in the range")
             Text("2. Solve the puzzle")
-//                .padding()
             
             Spacer()
             
             if isWithinRange(userLatitude: userLatitude, userLongitude: userLongitude, location: location) {
-                NavigationLink(destination: GameView(godName: location.god)) {
+                NavigationLink(destination: GameView(godName: location.god).environmentObject(progressManager)) {
                     Text("Start Puzzle")
                         .font(.title3)
                         .padding()
@@ -39,7 +38,6 @@ struct InstructionView: View {
             } else {
                 Text("Not in the range")
                     .foregroundColor(.red)
-//                    .padding()
             }
             
             Spacer()
@@ -58,5 +56,5 @@ struct InstructionView: View {
 
 #Preview {
     InstructionView(location: Location(locationName: "San Francisco Museum", latitude: 37.78584535799374, longitude: -122.40101861564061, god: "OSIRIS"), userLatitude: 37.78584535799374, userLongitude: -122.40101861564061)
+        .environmentObject(ProgressManager(totalPuzzles: 8))
 }
-

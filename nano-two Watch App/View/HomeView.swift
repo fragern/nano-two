@@ -72,6 +72,7 @@ import CoreLocation
 
 struct HomeView: View {
     @StateObject var locationDataManager = LocationDataManager()
+    @StateObject var progressManager = ProgressManager(totalPuzzles: 8) // 8 locations/puzzles
     
     let locations: [Location] = [
         Location(locationName: "The Qolam", latitude: -6.301891834965193, longitude: 106.65214118571649, god: "OSIRIS"),
@@ -87,16 +88,30 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-//                HStack {
-//                    Image("small_two")
-//                        .resizable()
-//                        .scaledToFit()
-//                    Image("small_one")
-//                        .resizable()
-//                        .scaledToFit()
-//                }
-//                .padding(.vertical, -10)
-                
+                VStack {
+                    HStack {
+                        NavigationLink(destination: StaticInstructionView()) {
+                            Image("egypt-map")
+                                .resizable()
+                                .scaledToFit()
+                                .padding()
+                                .background(Color.yellow.opacity(0.6))
+                                .cornerRadius(10)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        
+                        NavigationLink(destination: UserProgressView()) {
+                            Image("small_three")
+                                .resizable()
+                                .scaledToFit()
+                                .padding()
+                                .background(Color.yellow.opacity(0.6))
+                                .cornerRadius(10)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .aspectRatio(contentMode: .fit)
+                    }
+                }
                 VStack {
                     if let userLatitude = locationDataManager.latitude,
                        let userLongitude = locationDataManager.longitude {
@@ -109,7 +124,7 @@ struct HomeView: View {
                         }
                         
                         ForEach(sortedLocations, id: \.locationName) { location in
-                            NavigationLink(destination: InstructionView(location: location, userLatitude: userLatitude, userLongitude: userLongitude)) {
+                            NavigationLink(destination: InstructionView(location: location, userLatitude: userLatitude, userLongitude: userLongitude).environmentObject(progressManager)) {
                                 LocationCardView(location: location, userLatitude: userLatitude, userLongitude: userLongitude)
                             }
                             .buttonStyle(PlainButtonStyle())
@@ -125,6 +140,7 @@ struct HomeView: View {
             .navigationTitle("Deities Hunt")
             .navigationBarTitleDisplayMode(.automatic)
         }
+        .environmentObject(progressManager)
     }
     
     func distanceFromUser(userLatitude: Double, userLongitude: Double, location: Location) -> Double {
