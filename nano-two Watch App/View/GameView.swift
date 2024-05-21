@@ -225,6 +225,7 @@ import SwiftUI
 struct GameView: View {
     let godName: String
     
+    @State private var shuffledLetters: [String] = []
     @State private var selectedLetter: String = ""
     var emptyString = " "
     @State private var guessedWord: String = " " {
@@ -244,11 +245,6 @@ struct GameView: View {
     @State private var buttonClicked: [UUID: Bool] = [:]
     @State private var showingCompleteModal = false
     @State private var showingErrorModal = false
-    @State private var buttonVisibility: [String: Bool] = ["S": true, "R": true, "I": true, "O": true]
-    
-    var letters: [String] {
-        Array(godName).map { String($0) }
-    }
     
     var body: some View {
         NavigationView {
@@ -277,32 +273,7 @@ struct GameView: View {
                     
                     Spacer()
                     
-                    ForEach(letters.chunked(into: 3), id: \.self) { row in
-                        HStack {
-                            ForEach(row.indices, id: \.self) { index in
-                                let letter = row[index]
-                                let id = UUID()
-                                Button(action: {
-                                    if buttonClicked[id] ?? false {
-                                        guessedWord.removeLast()
-                                        buttonClicked[id] = false
-                                    } else {
-                                        self.selectedLetter = letter
-                                        self.guessedWord += letter
-                                        buttonClicked[id] = true
-                                    }
-                                }) {
-                                    Text(letter)
-                                        .font(.title2)
-                                        .foregroundStyle(.black)
-                                        .padding()
-                                }
-                                .clipShape(Rectangle())
-                                .background(buttonClicked[id] ?? false ? Color.gray : Color.yellow)
-                                .cornerRadius(10)
-                            }
-                        }
-                    }
+                    createGrid()
                     
                     Spacer()
                 }
@@ -358,6 +329,9 @@ struct GameView: View {
                 }
             }
             .padding()
+            .onAppear {
+                shuffledLetters = Array(godName).map { String($0) }.shuffled()
+            }
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(false)
@@ -368,10 +342,54 @@ struct GameView: View {
         guessedWord = emptyString
         showingErrorModal = false
     }
+    
+    @ViewBuilder
+    func createGrid() -> some View {
+        VStack {
+            ForEach(shuffledLetters.chunked(into: rowSize()), id: \.self) { row in
+                HStack {
+                    ForEach(row.indices, id: \.self) { index in
+                        let letter = row[index]
+                        let id = UUID()
+                        Button(action: {
+                            if buttonClicked[id] ?? false {
+                                guessedWord.removeLast()
+                                buttonClicked[id] = false
+                            } else {
+                                self.selectedLetter = letter
+                                self.guessedWord += letter
+                                buttonClicked[id] = true
+                            }
+                        }) {
+                            Text(letter)
+                                .font(.title2)
+                                .foregroundStyle(.black)
+                                .padding()
+                        }
+                        .clipShape(Rectangle())
+                        .background(buttonClicked[id] ?? false ? Color.gray : Color.yellow)
+                        .cornerRadius(10)
+                    }
+                }
+            }
+        }
+    }
+    
+    func rowSize() -> Int {
+        switch godName.count {
+        case 4: return 2
+        case 5: return 3
+        default: return 3
+        }
+    }
 }
 
 #Preview {
-    GameView(godName: "HORUS")
+    Group {
+//        GameView(godName: "OSIRIS")
+        GameView(godName: "HORUS")
+//        GameView(godName: "ATUM")
+    }
 }
 
 // Helper to chunk the letters into groups

@@ -34,7 +34,7 @@ struct LocationCardView: View {
             }
             .padding()
         }
-        .background(Color.yellow.opacity(0.3))
+        .background(Color.yellow.opacity(0.6))
         .clipShape(RoundedRectangle(cornerRadius: 10))
 //        .padding(EdgeInsets(top: 0, leading: 2, bottom: 10, trailing: 2))
     }

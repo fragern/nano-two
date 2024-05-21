@@ -65,6 +65,8 @@
 //    HomeView()
 //}
 
+//Location(locationName: "Kolam", latitude: -6.301891834965193, longitude: 106.65214118571649, god: "OSIRIS"),
+
 import SwiftUI
 import CoreLocation
 
@@ -72,7 +74,7 @@ struct HomeView: View {
     @StateObject var locationDataManager = LocationDataManager()
     
     let locations: [Location] = [
-        Location(locationName: "San Francisco Museum", latitude: 37.78584535799374, longitude: -122.40101861564061, god: "OSIRIS"),
+        Location(locationName: "The Qolam", latitude: -6.301891834965193, longitude: 106.65214118571649, god: "OSIRIS"),
         Location(locationName: "The Breeze", latitude: -6.301320963048898, longitude: 106.65336500841606, god: "KHONSU"),
         Location(locationName: "Green Office Park", latitude: -6.302180781293941, longitude: 106.6525654907035, god: "ATUM"),
         Location(locationName: "Cisauk Station", latitude: -6.324300513454862, longitude: 106.6415670385678, god: "HATHOR"),
@@ -85,32 +87,32 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                HStack {
-                    Image("small_two")
-                        .resizable()
-                        .scaledToFit()
-                    Image("small_one")
-                        .resizable()
-                        .scaledToFit()
-                }
-                .padding(.vertical, -10)
+//                HStack {
+//                    Image("small_two")
+//                        .resizable()
+//                        .scaledToFit()
+//                    Image("small_one")
+//                        .resizable()
+//                        .scaledToFit()
+//                }
+//                .padding(.vertical, -10)
                 
                 VStack {
                     if let userLatitude = locationDataManager.latitude,
                        let userLongitude = locationDataManager.longitude {
-                        ForEach(locations, id: \.locationName) { location in
-                            if isWithinRange(userLatitude: userLatitude, userLongitude: userLongitude, location: location) {
-                                NavigationLink(destination: GameView(godName: location.god)) {
-                                    LocationCardView(location: location, userLatitude: userLatitude, userLongitude: userLongitude)
-                                }
-                                .buttonStyle(PlainButtonStyle())
-                            } else {
+                        
+                        // Calculate distances and sort locations
+                        let sortedLocations = locations.sorted { location1, location2 in
+                            let distance1 = distanceFromUser(userLatitude: userLatitude, userLongitude: userLongitude, location: location1)
+                            let distance2 = distanceFromUser(userLatitude: userLatitude, userLongitude: userLongitude, location: location2)
+                            return distance1 < distance2
+                        }
+                        
+                        ForEach(sortedLocations, id: \.locationName) { location in
+                            NavigationLink(destination: InstructionView(location: location, userLatitude: userLatitude, userLongitude: userLongitude)) {
                                 LocationCardView(location: location, userLatitude: userLatitude, userLongitude: userLongitude)
-                                    .overlay(
-                                        Color.black.opacity(0.5)
-                                    )
-                                    .cornerRadius(10)
                             }
+                            .buttonStyle(PlainButtonStyle())
                         }
                     } else {
                         Text("Loading location...")
@@ -125,15 +127,13 @@ struct HomeView: View {
         }
     }
     
-    func isWithinRange(userLatitude: Double, userLongitude: Double, location: Location) -> Bool {
+    func distanceFromUser(userLatitude: Double, userLongitude: Double, location: Location) -> Double {
         let userLocation = CLLocation(latitude: userLatitude, longitude: userLongitude)
         let targetLocation = CLLocation(latitude: location.latitude, longitude: location.longitude)
-        let distance = userLocation.distance(from: targetLocation)
-        return distance <= 10000 // Adjust the range as needed (100 meters in this example)
+        return userLocation.distance(from: targetLocation)
     }
 }
 
 #Preview {
     HomeView()
 }
-
