@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct UserProgressView: View {
+    @ObservedObject var progressManager: ProgressManager
+
     var body: some View {
-        Text("Your Progress is {..} out of 8!")
-            .multilineTextAlignment(.center)
-            .padding()
+        VStack {
+            Text("\(Int(progressManager.progress * Double(progressManager.totalLocations))) out of \(progressManager.totalLocations)!")
+                .padding()
+            CircularProgressView(progress: progressManager.progress)
+                .frame(width: 100, height: 100)
+                .padding()
+        }
     }
 }
 
 #Preview {
-    UserProgressView()
+    UserProgressView(progressManager: ProgressManager(totalLocations: 8))
 }
+

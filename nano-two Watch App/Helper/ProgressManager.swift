@@ -6,16 +6,19 @@
 //
 
 import Foundation
+import Combine
 
 class ProgressManager: ObservableObject {
-    @Published var progress: Double = 0.0
-    private let totalPuzzles: Int
-    
-    init(totalPuzzles: Int) {
-        self.totalPuzzles = totalPuzzles
+    @Published var progress: Double
+    let totalLocations: Int
+
+    init(totalLocations: Int) {
+        self.totalLocations = totalLocations
+        self.progress = 0.0
     }
-    
-    func incrementProgress() {
-        progress += 1.0 / Double(totalPuzzles)
+
+    func updateProgress(currentLocationIndex: Int) {
+        progress = Double(currentLocationIndex) / Double(totalLocations)
     }
 }
+

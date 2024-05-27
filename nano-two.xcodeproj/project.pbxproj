@@ -18,6 +18,7 @@
 		BCC344892BF75ECD00124C89 /* LocationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC344882BF75ECD00124C89 /* LocationCardView.swift */; };
 		BCC3448B2BF75FF600124C89 /* CardBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC3448A2BF75FF600124C89 /* CardBackground.swift */; };
 		BCC3448E2BF769BE00124C89 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC3448D2BF769BE00124C89 /* LocationModel.swift */; };
+		BCE2AC772C04201C006FEBC8 /* old_HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE2AC762C04201C006FEBC8 /* old_HomeView.swift */; };
 		BCEC0A512BFB1CB300C622E5 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEC0A502BFB1CB300C622E5 /* CircularProgressView.swift */; };
 		BCEC0A532BFB204200C622E5 /* CircularTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEC0A522BFB204200C622E5 /* CircularTestView.swift */; };
 		BCF2A1962BF375E400E480E8 /* nano-two Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BCF2A1952BF375E400E480E8 /* nano-two Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -66,6 +67,7 @@
 		BCC344882BF75ECD00124C89 /* LocationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCardView.swift; sourceTree = "<group>"; };
 		BCC3448A2BF75FF600124C89 /* CardBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBackground.swift; sourceTree = "<group>"; };
 		BCC3448D2BF769BE00124C89 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		BCE2AC762C04201C006FEBC8 /* old_HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = old_HomeView.swift; sourceTree = "<group>"; };
 		BCEC0A502BFB1CB300C622E5 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		BCEC0A522BFB204200C622E5 /* CircularTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTestView.swift; sourceTree = "<group>"; };
 		BCF2A18F2BF375E400E480E8 /* nano-two.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nano-two.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				BCEC0A542BFB3D2D00C622E5 /* Testing */,
+				BCE2AC762C04201C006FEBC8 /* old_HomeView.swift */,
 				BCF785902BF661CA0044E7A1 /* HomeView.swift */,
 				BCAB1CC82BFD0887002004C8 /* UserProgressView.swift */,
 				BCF2A19C2BF375E400E480E8 /* GameView.swift */,
@@ -286,6 +289,7 @@
 				BCAB1CC72BFD0804002004C8 /* StaticInstructionView.swift in Sources */,
 				BCF785932BF726770044E7A1 /* DeitiesModel.swift in Sources */,
 				BC855F432BFC7003005006D5 /* InstructionView.swift in Sources */,
+				BCE2AC772C04201C006FEBC8 /* old_HomeView.swift in Sources */,
 				BCC3448E2BF769BE00124C89 /* LocationModel.swift in Sources */,
 				BCC344892BF75ECD00124C89 /* LocationCardView.swift in Sources */,
 			);
